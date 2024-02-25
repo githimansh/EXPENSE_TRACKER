@@ -6,7 +6,7 @@ final formatter =  DateFormat.yMd();
 
 const uuid = Uuid();
 
-enum Category { food, travel, leisure, work, shopping}
+enum Category { food, travel, leisure, work, shop}
 
 const categoryIcons = {
   Category.food:Icons.lunch_dining,
