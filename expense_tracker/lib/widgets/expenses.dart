@@ -33,6 +33,7 @@ class _ExpensesStste extends State<Expenses>{
 
   void _openAddExpeneOverlay() {
     showModalBottomSheet(
+    useSafeArea: true,
     isScrollControlled: true,  
     context: context, 
     builder: (ctx) => NewExpense(onAddExpense: _addExpense),
@@ -85,6 +86,7 @@ class _ExpensesStste extends State<Expenses>{
       }
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         title: const Text('Flutter ExpenseTracker'),
         actions: [
         IconButton(
