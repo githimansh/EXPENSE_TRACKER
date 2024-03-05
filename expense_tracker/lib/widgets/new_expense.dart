@@ -2,9 +2,12 @@
 
 // import 'package:flutter/foundation.dart';
 // import 'package:flutter/foundation.dart';
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
-import 'package:flutter/rendering.dart';
+// import 'package:flutter/rendering.dart';
 
 
 class NewExpense extends StatefulWidget{
@@ -38,14 +41,27 @@ void _presentDatePicker() async {
     });
 }
 
-void _submitExpenseDate() {
-  final enteredAmount = double.tryParse(_amountController
-  .text);
-  final amountIsInvalid = enteredAmount == null || enteredAmount <=0;
-  if(_titleController.text.trim().isEmpty || 
-  amountIsInvalid ||
-   _selectedDate == null) {
-    showDialog(context: context,
+void _showDiaglog(){
+  if(Platform.isIOS) {
+ showCupertinoDialog( 
+       context: context,
+     builder:(ctx) => CupertinoAlertDialog(
+      title:  const Text ('Invalid Input'),
+      content: const Text(
+        'Please make sure a valid title, amount, date and category was entered.'
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(ctx);
+          }, 
+          child: const Text('Okay'),
+          ),
+      ],
+    ) );
+} else {
+    showDialog(
+      context: context,
      builder:(ctx) => AlertDialog(
       title:  const Text ('Invalid Input'),
       content: const Text(
@@ -61,6 +77,17 @@ void _submitExpenseDate() {
       ],
      )
      );
+   }
+ }
+
+void _submitExpenseDate() {
+  final enteredAmount = double.tryParse(_amountController
+  .text);
+  final amountIsInvalid = enteredAmount == null || enteredAmount <=0;
+  if(_titleController.text.trim().isEmpty || 
+  amountIsInvalid ||
+   _selectedDate == null) {
+    _showDiaglog();
      return;
   }
 
@@ -91,7 +118,7 @@ void _submitExpenseDate() {
       height: double.infinity,
       child: SingleChildScrollView(
         child: Padding(
-          padding:  EdgeInsets.fromLTRB(16, 16, 16, keyboardSpace + 16),
+          padding:  EdgeInsets.fromLTRB(18, 18, 18, keyboardSpace + 18),
           child: Column(
             children: [
               if (width >= 600)
@@ -101,7 +128,7 @@ void _submitExpenseDate() {
               Expanded(
                 child:  TextField(
                 controller: _titleController,
-                maxLength: 50,
+                maxLength: 55,
                 decoration: const InputDecoration(
                   label: Text('Title'),
                 ),
@@ -204,7 +231,7 @@ void _submitExpenseDate() {
               ),
             ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 15),
           if(width >= 600)
            Row(children: [
              const Spacer(),

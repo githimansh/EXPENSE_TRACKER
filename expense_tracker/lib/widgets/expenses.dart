@@ -1,4 +1,4 @@
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
@@ -19,13 +19,13 @@ class _ExpensesStste extends State<Expenses>{
   final List<Expense> _registeredExpenses =[
   Expense(
     title: 'Flutter Course',
-     amount: 19.99,
+     amount: 28.50,
       date: DateTime.now(),
        category: Category.work,
        ),
   Expense(
     title: 'Cinema',
-     amount: 15.99,
+     amount: 55.35,
       date: DateTime.now(),
        category: Category.leisure,
        ),
@@ -54,7 +54,7 @@ class _ExpensesStste extends State<Expenses>{
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 3),
+        duration: const Duration(seconds: 2),
         content: const Text('Expense deleted.'),
         action: SnackBarAction(
           label: 'Undo',

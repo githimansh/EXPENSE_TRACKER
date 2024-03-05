@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 
 var kColorScheme = ColorScheme.fromSeed(
-  seedColor:const Color.fromARGB(208, 179, 132, 230),
+  seedColor:Color.fromARGB(238, 234, 106, 106),
   );
 
   var kDarkColorScheme = ColorScheme.fromSeed(
     brightness: Brightness.dark,
-    seedColor: const Color.fromARGB(255, 96, 59, 181)
+    seedColor: Color.fromARGB(255, 99, 117, 106)
      );
 void main(){
   // WidgetsFlutterBinding.ensureInitialized();
